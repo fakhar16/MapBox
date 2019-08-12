@@ -1,0 +1,12 @@
+<resources>
+	<string name="app_name">MapBox</string>
+	<string name="title_activity_home">HomeActivity</string>
+	<string name="tab_text_1">PinData List</string>
+	<string name="tab_text_2">Pin on Map</string>
+
+	<!-- TODO: Remove or change this placeholder text -->
+	<string name="hello_blank_fragment">Hello blank fragment</string>
+	<string name="title_home">Pin Data List</string>
+	<string name="title_dashboard">Map</string>
+
+</resources>
