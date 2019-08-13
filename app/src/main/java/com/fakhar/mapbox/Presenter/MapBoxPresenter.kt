@@ -55,7 +55,7 @@ class MapBoxPresenter (internal var iMapBoxView: IMapBoxView) : IMapBoxPresenter
             {
                 val location = LatLng(place.latitude,place.longitude)
 
-                googleMap.addMarker(MarkerOptions().position(location).title(place.name))
+                googleMap.addMarker(MarkerOptions().position(location).title(place.name)).showInfoWindow()
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location , 15f))
             }
         })

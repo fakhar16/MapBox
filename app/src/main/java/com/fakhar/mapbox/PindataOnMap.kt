@@ -97,7 +97,7 @@ class PindataOnMap : Fragment() {
                 var location = p0!!.locations.get(p0.locations.size - 1)
 
                 val userLocation = LatLng(location.latitude,location.longitude)
-                googleMap.addMarker(MarkerOptions().position(userLocation).title("My Location"))
+                googleMap.addMarker(MarkerOptions().position(userLocation).title("My Location")).showInfoWindow()
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(userLocation , 15f))
             }
         }
@@ -139,7 +139,7 @@ class PindataOnMap : Fragment() {
     {
         if(shouldShowRequestPermissionRationale(android.Manifest.permission.ACCESS_FINE_LOCATION))
         {
-            AlertDialog.Builder(this!!.context!!)
+            AlertDialog.Builder(this.context!!)
                 .setTitle("Permission needed")
                 .setMessage("Permission is required to get the user location")
                 .setPositiveButton("Ok"){dialog, which ->
