@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.fakhar.mapbox.Model.UserPlaces
 
-@Database (entities = [(UserPlaces::class)], version =  1)
+@Database (entities = [(UserPlaces::class)], version =  1 , exportSchema = false)
 abstract class AppDB : RoomDatabase() {
 
     companion object {

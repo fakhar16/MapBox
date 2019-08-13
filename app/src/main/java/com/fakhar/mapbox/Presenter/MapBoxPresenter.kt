@@ -42,8 +42,8 @@ class MapBoxPresenter (internal var iMapBoxView: IMapBoxView) : IMapBoxPresenter
 
     override fun ShowAllPinDataOnMap( context: Context , fragment: FragmentManager) {
 
-        var myList = ArrayList<UserPlaces>()
-        myList = context?.let { AppDB.invoke(it).placesList }!!
+//        var myList = ArrayList<UserPlaces>()
+        var myList = context.let { AppDB.invoke(it).placesList }
 
 
         mapFragment = fragment.findFragmentById(R.id.map) as SupportMapFragment
@@ -63,13 +63,13 @@ class MapBoxPresenter (internal var iMapBoxView: IMapBoxView) : IMapBoxPresenter
 
     override fun ShowSelectedPinOnMap(context: AppCompatActivity ) {
 
-        val place_name = context.intent.getStringExtra("Place_Name")
-        val Place_latitude_Str = context.intent.getStringExtra("Place_latitude")
-        val Place_longitude_Str = context.intent.getStringExtra("Place_longitude")
-        val Place_Description = context.intent.getStringExtra("Place_Description")
+        val place_name : String? = context.intent.getStringExtra("Place_Name")
+        val Place_latitude_Str : String? = context.intent.getStringExtra("Place_latitude")
+        val Place_longitude_Str : String? = context.intent.getStringExtra("Place_longitude")
+        val Place_Description : String? = context.intent.getStringExtra("Place_Description")
 
-        var latitude = Place_latitude_Str.toDouble()
-        var longitude = Place_longitude_Str.toDouble()
+        var latitude = Place_latitude_Str?.toDouble()
+        var longitude = Place_longitude_Str?.toDouble()
 
 
         mapFragment = context.supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
@@ -86,9 +86,9 @@ class MapBoxPresenter (internal var iMapBoxView: IMapBoxView) : IMapBoxPresenter
                 Place_Description
             )
 
-            val location = LatLng(latitude,longitude)
+            val location = latitude?.let { it1 -> longitude?.let { it2 -> LatLng(it1, it2) } }
             googleMap.setInfoWindowAdapter(adapter)
-            googleMap.addMarker(MarkerOptions().position(location).title(place_name)).showInfoWindow()
+            googleMap.addMarker(location?.let { it1 -> MarkerOptions().position(it1).title(place_name) }).showInfoWindow()
             googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(location , 15f))
         })
 
@@ -98,12 +98,12 @@ class MapBoxPresenter (internal var iMapBoxView: IMapBoxView) : IMapBoxPresenter
     @SuppressLint("WrongConstant")
     override fun ShowListOfPinData(view: View, context: Context) {
 
-        var myList = ArrayList<UserPlaces>()
-        myList = context.let { AppDB.invoke(it).placesList }!!
+//        var myList = ArrayList<UserPlaces>()
+        var myList = context.let { AppDB.invoke(it).placesList }
 
         var recyclerView  = view.findViewById(R.id.recycler_view) as RecyclerView
         recyclerView.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        val adapter = UserTaskAdapter(context!!, myList)
+        val adapter = UserTaskAdapter(context, myList)
         recyclerView.adapter = adapter
 
         iMapBoxView.onListShow()

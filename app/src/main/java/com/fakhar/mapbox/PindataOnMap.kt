@@ -127,7 +127,6 @@ class PindataOnMap : Fragment() {
         {
             if(ContextCompat.checkSelfPermission(context!!,android.Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED)
             {
-                googleMap.isMyLocationEnabled = true
                 fusedLocationProviderClient.requestLocationUpdates(locationRequest , locationCallback , Looper.myLooper())
 
             }
@@ -142,12 +141,13 @@ class PindataOnMap : Fragment() {
             AlertDialog.Builder(this.context!!)
                 .setTitle("Permission needed")
                 .setMessage("Permission is required to get the user location")
-                .setPositiveButton("Ok"){dialog, which ->
+                .setPositiveButton("Ok"){_, _ ->
                     // Do something when user press the positive button
                     requestPermissions(arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION),REQUEST_PERMISSION)
 
+
                 }
-                .setNegativeButton("Cancel"){dialog, which ->
+                .setNegativeButton("Cancel"){dialog, _ ->
                     // Do something when user press the positive button
                     dialog.dismiss()
                 }

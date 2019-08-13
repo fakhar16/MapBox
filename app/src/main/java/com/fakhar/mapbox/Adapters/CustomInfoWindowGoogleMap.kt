@@ -8,7 +8,7 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.model.Marker
 import kotlinx.android.synthetic.main.row_layout.view.*
 
-class CustomInfoWindowGoogleMap(val context: Context , val placeName : String , val placeLatitude : String , val placeLongitude : String, val placeDescription : String) : GoogleMap.InfoWindowAdapter {
+class CustomInfoWindowGoogleMap(val context: Context , val placeName : String? , val placeLatitude : String? , val placeLongitude : String?, val placeDescription : String?) : GoogleMap.InfoWindowAdapter {
 
     override fun getInfoContents(p0: Marker?): View {
 
