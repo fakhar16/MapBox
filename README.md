@@ -1,6 +1,4 @@
 # MapBox
-Development Time:
-I have spent almost 7 to 8 hours to develop MapBox with testing
 
 Things I used in the project
 
